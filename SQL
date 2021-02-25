@@ -1,0 +1,62 @@
+--Select
+--ANSII
+
+Select * from Customers
+
+Select ContactName Adi,CompanyName SirketAdi,City Sehir from Customers
+
+Select * from Customers where City='Berlin' --Şehri Berlin olanları getir where=koşul
+
+-- case insensitive = büyük küçük harf duyarsız
+
+Select * from Products where categoryId=1 or categoryId=3
+
+Select * from Products where categoryId=1 and UnitPrice>=10
+
+Select * from Products order by UnitPrice asc --Order by=sırala asc= yazmasanda olur
+
+Select * from Products order by UnitPrice desc  -- decc=büyükten küçüğe yaz..
+
+Select * from Products where CategoryID=1 order by UnitPrice desc -- kategori ıd'si 1 olanları fiyata göre azalan olarak sırala
+
+Select count(*) from Products -- Kaç tane kolon varsa söyler 
+
+select categoryId,count(*) from Products group by CategoryID
+
+Select  categoryId,count(*) from Products group by CategoryID having count(*)<10 --sayısı 10'dan küçük olanları sırala
+
+Select  categoryId,count(*) from Products where UnitPrice>20 group by CategoryID having count(*)<10 -- ilk where çalışır
+
+--inner join= iki farklı kategori birleştirmek için.. 
+--on = durumunda,şartında
+
+select Products.ProductID , Products.ProductName , Products.UnitPrice , Categories.CategoryName
+from Products inner join Categories
+on Products.CategoryID=Categories.CategoryID
+where Products.UnitPrice>10
+
+--Products.CategoryID =hangi tablodan hangi kolonu istiyorsun..
+
+--DTO= Data Transformation Object 
+
+--inner join = sadece iki tabloda birbirleriyle eşleşenleri bir araya getirir..eşlenmeyen data varsa getirmez..
+
+-- left join= solda olup sağda olmayanlarıda getir..
+
+-- right join= sağda olup solda olmayanları getir..
+
+select * from Products p inner join [Order Details] od
+on p.ProductID = od.ProductID
+inner join Orders o 
+on o.OrderID=od.OrderID
+
+Select * from Customers c left join Orders o
+on c.CustomerID=o.CustomerID
+where o.CustomerID is null
+
+-- null = gelmeyen data 
+
+
+
+
+
